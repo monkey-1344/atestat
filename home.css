@@ -1,0 +1,101 @@
+html,
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100%;
+}
+html {
+    scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+    display: none;
+}
+
+.page-section {
+    height: 100vh;
+    background-color: #f5f8ff;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.home-content .row {
+    column-gap: 6rem;
+}
+
+.intro-page {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.intro-page h1 {
+    margin-bottom: 2rem;
+}
+
+.intro-page p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    text-align: justify;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+}
+
+.intro-page strong {
+    color: #1d4ed8;
+}
+
+h1{
+    font-size: 3rem;
+    text-align: center;
+    color: #1d4ed8;
+}
+h2{
+    font-size: 2rem;
+    text-align: center;
+    color: #1d4ed8;
+}
+h3{
+    font-size: 1.5rem;
+    text-align: center;
+    color: #1d4ed8;
+}
+.drawer-body{
+    justify-content: center;
+}
+.section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section row{
+    padding: 5vh;
+}
+
+@media (min-width: 992px) {
+    #navMain .navbar-brand {
+        flex: 1 1 0;
+        margin-right: 0;
+    }
+    #navMain #navbarNavMenu {
+        flex: 0 0 auto;
+    }
+    #navMain .container-fluid::after {
+        content: "";
+        flex: 1 1 0;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .home-content .col:first-child {
+        display: none;
+    }
+}
+#navMain{
+    background-color: #0b2545 !important;
+}

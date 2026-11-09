@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introducere</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+<section class="page-section">
+    <div include_html="navbar.html"></div>
+    <main class="container intro-page">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1>Introducere</h1>
+                <p>
+                    Inteligența artificială (IA) cuprinde metode prin care un program
+                    „învață" dintr-un set de date, în loc să fie programat cu reguli fixe.
+                    În cadrul învățării automate (<em>machine learning</em>),
+                    <strong>învățarea supervizată</strong> folosește exemple pentru care
+                    răspunsul corect (eticheta, <em>label</em>) este cunoscut. Programul
+                    învață relația dintre datele de intrare și etichetă, apoi o aplică pe
+                    date noi.
+                </p>
+
+                <p>
+                    Problemele supervizate sunt de două feluri: <strong>clasificare</strong>
+                    (răspunsul este o categorie, de exemplu „spam" sau „nu e spam") și
+                    <strong>regresie</strong> (răspunsul este o valoare numerică, de exemplu
+                    prețul unei locuințe). Regresia liniară este cel mai simplu și cel mai
+                    folosit model de regresie și baza de la care pornesc multe modele mai
+                    complexe, inclusiv rețelele neuronale.
+                </p>
+            </div>
+        </div>
+    </main>
+</section>
+
+
+</body>
+
+<script>
+    async function includeHtml() {
+        const elements = document.querySelectorAll("[include_html]");
+
+        await Promise.all([...elements].map(async (element) => {
+            const file = element.getAttribute("include_html");
+            const response = await fetch(file);
+
+            if (!response.ok) {
+                throw new Error(`Could not load ${file}: ${response.status}`);
+            }
+
+            element.innerHTML = await response.text();
+        }));
+
+        setActiveLink();
+    }
+
+    function setActiveLink() {
+        const page = location.pathname.split("/").pop() || "index.html";
+
+        document.querySelectorAll("#navMain a[href]").forEach((link) => {
+            const href = link.getAttribute("href").split("#")[0];
+            if (href !== page) return;
+
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+
+            if (link.classList.contains("menu-item")) {
+                const parentButton = link.closest(".nav-item")?.querySelector(".nav-link");
+                parentButton?.classList.add("active");
+            }
+        });
+    }
+
+    includeHtml();
+</script>
+</html>
