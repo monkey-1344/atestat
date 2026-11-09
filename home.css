@@ -180,6 +180,12 @@ h3{
     padding: 5vh;
 }
 
+[include_html="navbar.html"] {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
 @media (min-width: 992px) {
     #navMain .navbar-brand {
         flex: 1 1 0;
