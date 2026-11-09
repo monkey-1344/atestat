@@ -49,6 +49,56 @@ html::-webkit-scrollbar {
     color: #1d4ed8;
 }
 
+.content-page {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.content-page h1 {
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.content-page p,
+.content-page li {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #1a202c;
+}
+
+.content-page p {
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+
+.content-page strong {
+    color: #1d4ed8;
+}
+
+.terms-list {
+    padding-left: 1.5rem;
+}
+
+.terms-list li {
+    margin-bottom: 0.75rem;
+}
+
+.terms-list li::marker {
+    color: #1d4ed8;
+}
+
+.formula {
+    background-color: #e0ecff;
+    border-left: 4px solid #1d4ed8;
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    margin: 0 0 1.5rem;
+    text-align: center;
+    font-size: 1.3rem;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    color: #1a202c;
+}
 h1{
     font-size: 3rem;
     text-align: center;

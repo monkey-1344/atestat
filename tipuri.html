@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scopul</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+<section class="page-section">
+    <div include_html="navbar.html"></div>
+    <main class="container content-page">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1>Tipuri de regresie liniară</h1>
+
+                <p>
+                    <strong>Regresia liniară simplă</strong> se folosește când prezicem
+                    valoarea țintă cu o singură caracteristică de intrare, presupunând o
+                    relație liniară între cele două:
+                </p>
+
+                <div class="formula">
+                    <em>y</em> = θ<sub>0</sub> + θ<sub>1</sub> · <em>x</em>
+                </div>
+
+                <p>
+                    θ<sub>0</sub> este termenul liber (valoarea lui <em>y</em> când
+                    <em>x</em> = 0), iar θ<sub>1</sub> este panta dreptei (cu cât se
+                    modifică <em>y</em> când <em>x</em> crește cu 1). În unele surse
+                    parametrii se notează β<sub>0</sub> și β<sub>1</sub>.
+                </p>
+
+                <p>
+                    <strong>Regresia liniară multiplă</strong> folosește mai multe
+                    caracteristici:
+                </p>
+
+                <div class="formula">
+                    <em>y</em> = θ<sub>0</sub> + θ<sub>1</sub> · <em>x</em><sub>1</sub>
+                    + θ<sub>2</sub> · <em>x</em><sub>2</sub> + … + θ<sub><em>n</em></sub> ·
+                    <em>x</em><sub><em>n</em></sub>
+                </div>
+
+                <p>
+                    Pentru două caracteristici graficul este un plan, iar pentru mai multe
+                    un hiperplan. În formă matriceală, <em>ŷ</em> = <em>X</em>θ, unde
+                    <em>X</em> este matricea datelor (cu o coloană de 1 pentru termenul
+                    liber), iar θ este vectorul parametrilor.
+                </p>
+            </div>
+        </div>
+    </main>
+</section>
+
+
+</body>
+
+<script>
+    async function includeHtml() {
+        const elements = document.querySelectorAll("[include_html]");
+
+        await Promise.all([...elements].map(async (element) => {
+            const file = element.getAttribute("include_html");
+            const response = await fetch(file);
+
+            if (!response.ok) {
+                throw new Error(`Could not load ${file}: ${response.status}`);
+            }
+
+            element.innerHTML = await response.text();
+        }));
+
+        setActiveLink();
+    }
+
+    function setActiveLink() {
+        const page = location.pathname.split("/").pop() || "index.html";
+
+        document.querySelectorAll("#navMain a[href]").forEach((link) => {
+            const href = link.getAttribute("href").split("#")[0];
+            if (href !== page) return;
+
+            link.classList.add("active");
+            link.setAttribute("aria-current", "page");
+
+            if (link.classList.contains("menu-item")) {
+                const parentButton = link.closest(".nav-item")?.querySelector(".nav-link");
+                parentButton?.classList.add("active");
+            }
+        });
+    }
+
+    includeHtml();
+</script>
+</html>
