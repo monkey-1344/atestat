@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Metoda mici patrare</title>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+<section class="page-section">
+    <div include_html="navbar.html"></div>
+    <main class="container content-page">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1>Metoda celor mai mici pătrate</h1>
+
+                <p>
+                    Pentru fiecare punct \( (x_i, y_i) \), reziduul este diferența dintre
+                    valoarea reală și cea prezisă: \( e_i = y_i - \hat{y}_i \). Metoda
+                    celor mai mici pătrate (OLS, <em>Ordinary Least Squares</em>) alege
+                    parametrii care minimizează suma pătratelor reziduurilor:
+                </p>
+
+                <div class="formula">
+                    \[ SSE = \sum (y_i - \beta_0 - \beta_1 x_i)^2 \]
+                </div>
+
+                <p>
+                    Se ridică la pătrat pentru ca erorile pozitive și negative să nu se
+                    anuleze și pentru ca erorile mari să fie penalizate mai puternic.
+                    Funcția SSE este un paraboloid, deci minimul se află unde derivatele
+                    parțiale sunt zero:
+                </p>
+
+                <div class="formula">
+                    \[ \frac{\partial SSE}{\partial \beta_0} = -2 \sum (y_i - \beta_0 - \beta_1 x_i) = 0
+                    \;\Rightarrow\; \beta_0 = \bar{y} - \beta_1 \bar{x} \]
+                    \[ \frac{\partial SSE}{\partial \beta_1} = -2 \sum x_i (y_i - \beta_0 - \beta_1 x_i) = 0 \]
+                </div>
+
+                <p>
+                    Înlocuind \( \beta_0 \) în a doua ecuație și simplificând se obțin
+                    formulele:
+                </p>
+
+                <div class="formula">
+                    \[ \beta_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2} \]
+                    \[ \beta_0 = \bar{y} - \beta_1 \bar{x} \]
+                </div>
+
+                <p>
+                    unde \( \bar{x} \) și \( \bar{y} \) sunt mediile. Dreapta trece mereu
+                    prin punctul \( (\bar{x}, \bar{y}) \).
+                </p>
+
+                <p>
+                    Pentru cazul general (mai multe variabile), minimul lui SSE se obține
+                    din ecuația normală:
+                </p>
+
+                <div class="formula">
+                    \[ \theta = (X^T X)^{-1} X^T y \]
+                </div>
+
+                <p>
+                    Formula necesită ca \( X^T X \) să fie inversabilă, ceea ce nu se
+                    întâmplă când există multicoliniaritate perfectă. Pentru seturi mari
+                    de date se folosește adesea gradient descent: parametrii se corectează
+                    treptat, \( \theta_j := \theta_j - \alpha \dfrac{\partial J}{\partial \theta_j} \),
+                    unde \( J \) este MSE, iar \( \alpha \) este rata de învățare.
+                </p>
+            </div>
+        </div>
+    </main>
+</section>
+
+
+</body>
+
+<script src="index.js"></script>
+</html>
